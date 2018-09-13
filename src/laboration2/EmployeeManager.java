@@ -59,7 +59,23 @@ public class EmployeeManager {
                 e.setBirthDate(birthDate);
             }
             if (department != null) {
-                //TODO: Fix!
+                switch (department) {
+                    case Secretary.ID:
+                        Secretary s = new Secretary(e);
+                        employees.set(i, s);
+                        break;
+                    case Technician.ID:
+                        Technician t = new Technician(e);
+                        employees.set(i, t);
+                        break;
+                    case Programmer.ID:
+                        Programmer p = new Programmer(e);
+                        employees.set(i, p);
+                        break;
+                    default:
+                        e = null;
+                        break;
+                }
             }
             if (salary != null) {
                 e.setSalary(salary);

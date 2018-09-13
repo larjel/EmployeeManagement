@@ -8,17 +8,22 @@ public abstract class Employee {
     private String gender;
     private final int employeeId;
 
-    private final String department;
-
     static int idGenerator = 1;
 
-    public Employee(String name, String birthDate, int salary, String gender, String department) {
+    public Employee(Employee e) {
+        name = e.name;
+        birthDate = e.birthDate;
+        salary = e.salary;
+        gender = e.gender;
+        employeeId = e.employeeId;
+    }
+
+    public Employee(String name, String birthDate, int salary, String gender) {
         this.employeeId = idGenerator++;
         this.name = name;
         this.birthDate = birthDate;
         this.salary = salary;
         this.gender = gender;
-        this.department = department;
     }
 
     public abstract int calculateBonus();
@@ -80,10 +85,6 @@ public abstract class Employee {
 
     public int getEmployeeId() {
         return employeeId;
-    }
-
-    public String getDepartment() {
-        return department;
     }
 
 }
