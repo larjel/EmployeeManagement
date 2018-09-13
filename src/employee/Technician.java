@@ -11,8 +11,8 @@ public class Technician extends Employee {
         super(e);
     }
 
-    public Technician(String name, String birthDate, int salary, String gender) {
-        super(name, birthDate, salary, gender);
+    public Technician(String name, String birthday, int salary, String gender) {
+        super(name, birthday, salary, gender);
     }
 
     @Override

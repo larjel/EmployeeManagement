@@ -22,8 +22,9 @@ public class EmployeeManager {
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
+     * @return 'true' if employee was successfully added or 'false' if failure
      */
-    public void add(String name, String birthDate, int profession, int salary, String gender) {
+    public boolean add(String name, String birthDate, int profession, int salary, String gender) {
         Employee employee;
         switch (profession) {
             case Secretary.ID:
@@ -42,7 +43,9 @@ public class EmployeeManager {
 
         if (employee != null) {
             employees.add(employee);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -92,7 +95,7 @@ public class EmployeeManager {
                 employee.setName(name);
             }
             if (birthDate != null) {
-                employee.setBirthDate(birthDate);
+                employee.setBirthday(birthDate);
             }
             if (salary != null) {
                 employee.setSalary(salary);
@@ -134,7 +137,7 @@ public class EmployeeManager {
         System.out.print("ID=" + employee.getEmployeeId());
         System.out.print(", Name=" + employee.getName());
         System.out.print(", Gender=" + employee.getGender());
-        System.out.print(", Birthday=" + employee.getBirthDate());
+        System.out.print(", Birthday=" + employee.getBirthday());
         System.out.print(", Salary=" + employee.getSalary());
         System.out.print(", Bonus=" + employee.calculateBonus());
 

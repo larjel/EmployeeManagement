@@ -1,13 +1,13 @@
 package employee;
 
 public abstract class Employee {
-    
+
     public static final String GENDER_MAN = "Man";
     public static final String GENDER_WOMAN = "Woman";
     public static final String GENDER_UNDEFINED = "Undefined";
 
     private String name;
-    private String birthDate;
+    private String birthday;
     private int salary;
     private String gender;
     private final int employeeId;
@@ -16,11 +16,12 @@ public abstract class Employee {
 
     /**
      * Copy constructor
+     *
      * @param e Employee instance to copy fields from
      */
     public Employee(Employee e) {
         name = e.name;
-        birthDate = e.birthDate;
+        birthday = e.birthday;
         salary = e.salary;
         gender = e.gender;
         employeeId = e.employeeId;
@@ -28,28 +29,32 @@ public abstract class Employee {
 
     /**
      * Constructor
+     *
      * @param name
-     * @param birthDate
+     * @param birthday
      * @param salary
-     * @param gender 
+     * @param gender
      */
-    public Employee(String name, String birthDate, int salary, String gender) {
+    public Employee(String name, String birthday, int salary, String gender) {
         this.employeeId = idGenerator++;
         this.name = name;
-        this.birthDate = birthDate;
+        this.birthday = birthday;
         this.salary = salary;
         this.gender = gender;
     }
 
     /**
      * Calculate bonus
+     *
      * @return Calculated bonus
      */
     public abstract int calculateBonus();
 
     @Override
     public String toString() {
-        return System.lineSeparator() + "Employee{" + "name=" + name + ", birthDate=" + birthDate + ", salary=" + salary + ", gender=" + gender + ", employeeId=" + employeeId + '}';
+        return System.lineSeparator() + "Employee{" + "name=" + name
+                + ", birthDate=" + birthday + ", salary=" + salary
+                + ", gender=" + gender + ", employeeId=" + employeeId + '}';
     }
 
     public String getName() {
@@ -60,12 +65,12 @@ public abstract class Employee {
         this.name = name;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public int getSalary() {

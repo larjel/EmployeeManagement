@@ -11,8 +11,8 @@ public class Secretary extends Employee {
         super(e);
     }
 
-    public Secretary(String name, String birthDate, int salary, String gender) {
-        super(name, birthDate, salary, gender);
+    public Secretary(String name, String birthday, int salary, String gender) {
+        super(name, birthday, salary, gender);
     }
 
     @Override
