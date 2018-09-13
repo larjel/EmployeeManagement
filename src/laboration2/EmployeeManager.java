@@ -13,13 +13,13 @@ public class EmployeeManager {
     public void add(String name, String birthDate, int department, int salary, String gender) {
         Employee e;
         switch (department) {
-            case 1: // Secretary
+            case Secretary.ID: // Secretary
                 e = new Secretary(name, birthDate, salary, gender);
                 break;
-            case 2: // Technician
+            case Technician.ID: // Technician
                 e = new Technician(name, birthDate, salary, gender);
                 break;
-            case 3: // Programmer
+            case Programmer.ID: // Programmer
                 e = new Programmer(name, birthDate, salary, gender);
                 break;
             default:
@@ -59,7 +59,7 @@ public class EmployeeManager {
                 e.setBirthDate(birthDate);
             }
             if (department != null) {
-
+                //TODO: Fix!
             }
             if (salary != null) {
                 e.setSalary(salary);
@@ -70,21 +70,62 @@ public class EmployeeManager {
         }
     }
 
+    private void displayEmployee(Employee employee) {
+        System.out.print("Name: " + employee.getName());
+        System.out.print(", Birthdate: " + employee.getBirthDate());
+        System.out.print(", Salary: " + employee.getSalary());
+        System.out.print(", Gender: " + employee.getGender());
+        System.out.print(", ID: " + employee.getEmployeeId());
+
+        if (employee instanceof Secretary) {
+            System.out.println(", Dep: Secretary");
+        } else if (employee instanceof Technician) {
+            System.out.println(", Dep: Technician");
+        } else if (employee instanceof Programmer) {
+            System.out.println(", Dep: Programmer");
+        }
+
+    }
+
+    public void search(Integer employeeId, String name, Integer department) {
+        for (Employee employee : employees) {
+            boolean show = false;
+            if (employeeId != null && employeeId.equals(employee.getEmployeeId())) {
+                show = true;
+            }
+            if (name != null && name.equals(employee.getName())) {
+                show = true;
+            }
+            if (department != null) {
+                switch (department) {
+                    case Secretary.ID:
+                        if (employee instanceof Secretary) {
+                            show = true;
+                        }
+                        break;
+                    case Technician.ID:
+                        if (employee instanceof Technician) {
+                            show = true;
+                        }
+                        break;
+                    case Programmer.ID:
+                        if (employee instanceof Programmer) {
+                            show = true;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (show) {
+                displayEmployee(employee);
+            }
+        }
+    }
+
     public void displayAll() {
         for (Employee employee : employees) {
-            System.out.print("Name: " + employee.getName());
-            System.out.print(", Birthdate: " + employee.getBirthDate());
-            System.out.print(", Salary: " + employee.getSalary());
-            System.out.print(", Gender: " + employee.getGender());
-            System.out.print(", ID: " + employee.getEmployeeId());
-
-            if (employee instanceof Secretary) {
-                System.out.println(", Dep: Secretary");
-            } else if (employee instanceof Technician) {
-                System.out.println(", Dep: Technician");
-            } else if (employee instanceof Programmer) {
-                System.out.println(", Dep: Programmer");
-            }
+            displayEmployee(employee);
         }
     }
 
