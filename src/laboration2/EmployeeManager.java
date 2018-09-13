@@ -8,84 +8,127 @@ import java.util.ArrayList;
 
 public class EmployeeManager {
 
-    ArrayList<Employee> employees = new ArrayList<>();
+    /**
+     * Holds all Employees
+     */
+    private final ArrayList<Employee> employees = new ArrayList<>();
 
+    /**
+     * Add a new Employee
+     *
+     * @param name Name on format "[First name] [Last name]"
+     * @param birthDate Birthday on format YYMMDD
+     * @param department Secretary.ID, Technician.ID or Programmer.ID
+     * @param salary Salary
+     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
+     */
     public void add(String name, String birthDate, int department, int salary, String gender) {
-        Employee e;
+        Employee employee;
         switch (department) {
-            case Secretary.ID: // Secretary
-                e = new Secretary(name, birthDate, salary, gender);
+            case Secretary.ID:
+                employee = new Secretary(name, birthDate, salary, gender);
                 break;
-            case Technician.ID: // Technician
-                e = new Technician(name, birthDate, salary, gender);
+            case Technician.ID:
+                employee = new Technician(name, birthDate, salary, gender);
                 break;
-            case Programmer.ID: // Programmer
-                e = new Programmer(name, birthDate, salary, gender);
+            case Programmer.ID:
+                employee = new Programmer(name, birthDate, salary, gender);
                 break;
             default:
-                e = null;
+                employee = null;
                 break;
         }
-        if (e != null) {
-            employees.add(e);
+
+        if (employee != null) {
+            employees.add(employee);
         }
     }
 
+    /**
+     * Get the array list index of Employee with given employee ID
+     *
+     * @param employeeId Unique ID of employee to find
+     * @return Index of Employee in array list or -1 if no Employee found
+     */
     private int getIndexOfEmployee(int employeeId) {
         for (int i = 0; i < employees.size(); i++) {
-            Employee e = employees.get(i);
-            if (e.getEmployeeId() == employeeId) {
+            Employee employee = employees.get(i);
+            if (employee.getEmployeeId() == employeeId) {
                 return i;
             }
         }
         return -1; // Not found
     }
 
+    /**
+     * Delete one employee
+     *
+     * @param employeeId Unique ID of employee to delete
+     */
     public void delete(int employeeId) {
-        int i = getIndexOfEmployee(employeeId);
-        if (i != -1) {
-            employees.remove(i);
+        int indexOfEmployee = getIndexOfEmployee(employeeId);
+        if (indexOfEmployee != -1) {
+            employees.remove(indexOfEmployee);
         }
     }
 
+    /**
+     * Update employee. Fields NOT to set should be passed as 'null'.
+     *
+     * @param employeeId Mandatory identifier of employee to update.
+     * @param name Name on format "[First name] [Last name]"
+     * @param birthDate Birthday on format YYMMDD
+     * @param department Secretary.ID, Technician.ID or Programmer.ID
+     * @param salary Salary
+     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
+     * Employee.GENDER_UNDEFINED
+     */
     public void update(int employeeId, String name, String birthDate, Integer department, Integer salary, String gender) {
-        int i = getIndexOfEmployee(employeeId);
-        if (i != -1) {
-            Employee e = employees.get(i);
+        int indexOfEmployee = getIndexOfEmployee(employeeId);
+        if (indexOfEmployee != -1) {
+            Employee employee = employees.get(indexOfEmployee);
             if (name != null) {
-                e.setName(name);
+                employee.setName(name);
             }
             if (birthDate != null) {
-                e.setBirthDate(birthDate);
+                employee.setBirthDate(birthDate);
+            }
+            if (salary != null) {
+                employee.setSalary(salary);
+            }
+            if (gender != null) {
+                employee.setGender(gender);
             }
             if (department != null) {
                 switch (department) {
-                    case Secretary.ID:
-                        Secretary s = new Secretary(e);
-                        employees.set(i, s);
+                    case Secretary.ID: {
+                        Secretary secretary = new Secretary(employee);
+                        employees.set(indexOfEmployee, secretary);
                         break;
-                    case Technician.ID:
-                        Technician t = new Technician(e);
-                        employees.set(i, t);
+                    }
+                    case Technician.ID: {
+                        Technician technician = new Technician(employee);
+                        employees.set(indexOfEmployee, technician);
                         break;
-                    case Programmer.ID:
-                        Programmer p = new Programmer(e);
-                        employees.set(i, p);
+                    }
+                    case Programmer.ID: {
+                        Programmer programmer = new Programmer(employee);
+                        employees.set(indexOfEmployee, programmer);
                         break;
+                    }
                     default:
-                        e = null;
+                        // Faulty department
                         break;
                 }
-            }
-            if (salary != null) {
-                e.setSalary(salary);
-            }
-            if (gender != null) {
-                e.setGender(gender);
             }
         }
     }
 
+    /**
+     * Display information about one employee
+     *
+     * @param employee
+     */
     private void displayEmployee(Employee employee) {
         System.out.print("Name: " + employee.getName());
         System.out.print(", Birthdate: " + employee.getBirthDate());
@@ -100,9 +143,16 @@ public class EmployeeManager {
         } else if (employee instanceof Programmer) {
             System.out.println(", Dep: Programmer");
         }
-
     }
 
+    /**
+     * Search and display an employee based on given arguments. Fields NOT to
+     * search for should be passed as 'null'.
+     *
+     * @param employeeId
+     * @param name
+     * @param department
+     */
     public void search(Integer employeeId, String name, Integer department) {
         for (Employee employee : employees) {
             boolean show = false;
@@ -139,6 +189,9 @@ public class EmployeeManager {
         }
     }
 
+    /**
+     * Display all employees
+     */
     public void displayAll() {
         for (Employee employee : employees) {
             displayEmployee(employee);
@@ -149,4 +202,9 @@ public class EmployeeManager {
     public String toString() {
         return "EmployeeManager{" + "employees=" + employees + '}';
     }
+
+    public ArrayList<Employee> getEmployees() {
+        return employees;
+    }
+
 }

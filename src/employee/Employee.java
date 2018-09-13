@@ -1,6 +1,10 @@
 package employee;
 
 public abstract class Employee {
+    
+    public static final String GENDER_MAN = "Man";
+    public static final String GENDER_WOMAN = "Woman";
+    public static final String GENDER_UNDEFINED = "Undefined";
 
     private String name;
     private String birthDate;
@@ -10,6 +14,10 @@ public abstract class Employee {
 
     static int idGenerator = 1;
 
+    /**
+     * Copy constructor
+     * @param e Employee instance to copy fields from
+     */
     public Employee(Employee e) {
         name = e.name;
         birthDate = e.birthDate;
@@ -18,6 +26,13 @@ public abstract class Employee {
         employeeId = e.employeeId;
     }
 
+    /**
+     * Constructor
+     * @param name
+     * @param birthDate
+     * @param salary
+     * @param gender 
+     */
     public Employee(String name, String birthDate, int salary, String gender) {
         this.employeeId = idGenerator++;
         this.name = name;
@@ -26,25 +41,11 @@ public abstract class Employee {
         this.gender = gender;
     }
 
+    /**
+     * Calculate bonus
+     * @return Calculated bonus
+     */
     public abstract int calculateBonus();
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Employee other = (Employee) obj;
-        if (this.employeeId != other.employeeId) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
