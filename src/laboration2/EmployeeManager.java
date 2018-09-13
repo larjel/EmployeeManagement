@@ -18,13 +18,14 @@ public class EmployeeManager {
      *
      * @param name Name on format "[First name] [Last name]"
      * @param birthDate Birthday on format YYMMDD
-     * @param department Secretary.ID, Technician.ID or Programmer.ID
+     * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
+     * Employee.GENDER_UNDEFINED
      */
-    public void add(String name, String birthDate, int department, int salary, String gender) {
+    public void add(String name, String birthDate, int profession, int salary, String gender) {
         Employee employee;
-        switch (department) {
+        switch (profession) {
             case Secretary.ID:
                 employee = new Secretary(name, birthDate, salary, gender);
                 break;
@@ -78,12 +79,12 @@ public class EmployeeManager {
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]"
      * @param birthDate Birthday on format YYMMDD
-     * @param department Secretary.ID, Technician.ID or Programmer.ID
+     * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
      */
-    public void update(int employeeId, String name, String birthDate, Integer department, Integer salary, String gender) {
+    public void update(int employeeId, String name, String birthDate, Integer profession, Integer salary, String gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             Employee employee = employees.get(indexOfEmployee);
@@ -99,8 +100,8 @@ public class EmployeeManager {
             if (gender != null) {
                 employee.setGender(gender);
             }
-            if (department != null) {
-                switch (department) {
+            if (profession != null) {
+                switch (profession) {
                     case Secretary.ID: {
                         Secretary secretary = new Secretary(employee);
                         employees.set(indexOfEmployee, secretary);
@@ -117,7 +118,7 @@ public class EmployeeManager {
                         break;
                     }
                     default:
-                        // Faulty department
+                        // Faulty profession
                         break;
                 }
             }
@@ -130,18 +131,22 @@ public class EmployeeManager {
      * @param employee
      */
     private void displayEmployee(Employee employee) {
-        System.out.print("Name: " + employee.getName());
-        System.out.print(", Birthdate: " + employee.getBirthDate());
-        System.out.print(", Salary: " + employee.getSalary());
-        System.out.print(", Gender: " + employee.getGender());
-        System.out.print(", ID: " + employee.getEmployeeId());
+        System.out.print("ID=" + employee.getEmployeeId());
+        System.out.print(", Name=" + employee.getName());
+        System.out.print(", Gender=" + employee.getGender());
+        System.out.print(", Birthday=" + employee.getBirthDate());
+        System.out.print(", Salary=" + employee.getSalary());
+        System.out.print(", Bonus=" + employee.calculateBonus());
 
+        System.out.print(", Profession=");
         if (employee instanceof Secretary) {
-            System.out.println(", Dep: Secretary");
+            System.out.println("Secretary");
         } else if (employee instanceof Technician) {
-            System.out.println(", Dep: Technician");
+            System.out.println("Technician");
         } else if (employee instanceof Programmer) {
-            System.out.println(", Dep: Programmer");
+            System.out.println("Programmer");
+        } else {
+            System.out.println("Unspecified");
         }
     }
 
@@ -151,9 +156,9 @@ public class EmployeeManager {
      *
      * @param employeeId
      * @param name
-     * @param department
+     * @param profession
      */
-    public void search(Integer employeeId, String name, Integer department) {
+    public void search(Integer employeeId, String name, Integer profession) {
         for (Employee employee : employees) {
             boolean show = false;
             if (employeeId != null && employeeId.equals(employee.getEmployeeId())) {
@@ -162,8 +167,8 @@ public class EmployeeManager {
             if (name != null && name.equals(employee.getName())) {
                 show = true;
             }
-            if (department != null) {
-                switch (department) {
+            if (profession != null) {
+                switch (profession) {
                     case Secretary.ID:
                         if (employee instanceof Secretary) {
                             show = true;
