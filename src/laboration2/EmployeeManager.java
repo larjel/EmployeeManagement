@@ -17,24 +17,24 @@ public class EmployeeManager {
      * Add a new Employee
      *
      * @param name Name on format "[First name] [Last name]"
-     * @param birthDate Birthday on format YYMMDD
+     * @param birthday Birthday on format YYMMDD
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
      * @return 'true' if employee was successfully added or 'false' if failure
      */
-    public boolean add(String name, String birthDate, int profession, int salary, String gender) {
+    public boolean add(String name, String birthday, int profession, int salary, String gender) {
         Employee employee;
         switch (profession) {
             case Secretary.ID:
-                employee = new Secretary(name, birthDate, salary, gender);
+                employee = new Secretary(name, birthday, salary, gender);
                 break;
             case Technician.ID:
-                employee = new Technician(name, birthDate, salary, gender);
+                employee = new Technician(name, birthday, salary, gender);
                 break;
             case Programmer.ID:
-                employee = new Programmer(name, birthDate, salary, gender);
+                employee = new Programmer(name, birthday, salary, gender);
                 break;
             default:
                 employee = null;
@@ -81,21 +81,21 @@ public class EmployeeManager {
      *
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]"
-     * @param birthDate Birthday on format YYMMDD
+     * @param birthday Birthday on format YYMMDD
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
      */
-    public void update(int employeeId, String name, String birthDate, Integer profession, Integer salary, String gender) {
+    public void update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             Employee employee = employees.get(indexOfEmployee);
             if (name != null) {
                 employee.setName(name);
             }
-            if (birthDate != null) {
-                employee.setBirthday(birthDate);
+            if (birthday != null) {
+                employee.setBirthday(birthday);
             }
             if (salary != null) {
                 employee.setSalary(salary);
