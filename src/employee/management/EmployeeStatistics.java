@@ -21,11 +21,14 @@ public class EmployeeStatistics {
     }
 
     public void displayAverageSalary() {
-        int total = 0;
-        for (Employee employee : employees) {
-            total += employee.getSalary();
+        int average = 0;
+        if (employees.size() > 0) {
+            int total = 0;
+            for (Employee employee : employees) {
+                total += employee.getSalary();
+            }
+            average = total / employees.size();
         }
-        int average = total / employees.size();
         System.out.println("Average salary: " + average);
     }
 
@@ -69,7 +72,7 @@ public class EmployeeStatistics {
                     nWomen++;
                 }
             }
-            womenPercentage = nWomen / (double) employees.size();
+            womenPercentage = 100.0 * nWomen / employees.size();
         }
         System.out.println("Women in the staff: " + womenPercentage + "%");
     }
@@ -106,18 +109,18 @@ public class EmployeeStatistics {
         }
 
         if (nSecretariesMen > 0) {
-            secretariesMenPercentage = nSecretariesMen / (double) nSecretariesTotal;
+            secretariesMenPercentage = 100.0 * nSecretariesMen / nSecretariesTotal;
         }
         if (nTechniciansMen > 0) {
-            techniciansMenPercentage = nTechniciansMen / (double) nTechniciansTotal;
+            techniciansMenPercentage = 100.0 * nTechniciansMen / nTechniciansTotal;
         }
         if (nProgrammersMen > 0) {
-            programmersMenPercentage = nProgrammersMen / (double) nProgrammersTotal;
+            programmersMenPercentage = 100.0 * nProgrammersMen / nProgrammersTotal;
         }
 
-        System.out.println("Men percentage of Secretaries: " + secretariesMenPercentage);
-        System.out.println("Men percentage of Technicians: " + techniciansMenPercentage);
-        System.out.println("Men percentage of Programmers: " + programmersMenPercentage);
+        System.out.println("Men percentage of Secretaries: " + secretariesMenPercentage + "%");
+        System.out.println("Men percentage of Technicians: " + techniciansMenPercentage + "%");
+        System.out.println("Men percentage of Programmers: " + programmersMenPercentage + "%");
     }
 
 }
