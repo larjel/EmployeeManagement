@@ -21,7 +21,7 @@ public class SystemInput {
     private void handleBadInput() {
         // "Empty" buffer (.* = match any char zero or more times)
         sc.skip(".*");
-        System.out.println("Bad input. Please reenter.");
+        System.out.print("Bad input. Please reenter > ");
     }
 
     public double getDouble() {
