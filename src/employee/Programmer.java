@@ -6,6 +6,8 @@ public class Programmer extends Employee {
      * Programmer identifier. Should be unique among Employee subclasses.
      */
     public static final int ID = 3;
+    // Multiplier for calculating the bonus
+    private static final double BONUS_MULTIPLIER = 2.3;
 
     public Programmer(Employee e) {
         super(e);
@@ -17,7 +19,7 @@ public class Programmer extends Employee {
 
     @Override
     public int calculateBonus() {
-        return 0;
+        return (int) (this.getSalary() * BONUS_MULTIPLIER);
     }
 
 }
