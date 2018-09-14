@@ -19,7 +19,7 @@ public abstract class Employee {
      *
      * @param e Employee instance to copy fields from
      */
-    public Employee(Employee e) {
+    protected Employee(Employee e) {
         name = e.name;
         birthday = e.birthday;
         salary = e.salary;
@@ -35,7 +35,7 @@ public abstract class Employee {
      * @param salary
      * @param gender
      */
-    public Employee(String name, String birthday, int salary, String gender) {
+    protected Employee(String name, String birthday, int salary, String gender) {
         this.employeeId = idGenerator++;
         this.name = name;
         this.birthday = birthday;
