@@ -163,16 +163,17 @@ public class EmployeeManager {
      * search for should be passed as 'null'.
      *
      * @param employeeId Mandatory identifier of employee to update.
-     * @param name Name on format "[First name] [Last name]"
+     * @param name Name on format "[First name] [Last name]" (case insensitive)
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      */
     public void search(Integer employeeId, String name, Integer profession) {
+        boolean found = false;
         for (Employee employee : employees) {
             boolean show = false;
             if (employeeId != null && employeeId.equals(employee.getEmployeeId())) {
                 show = true;
             }
-            if (name != null && name.equals(employee.getName())) {
+            if (name != null && name.equalsIgnoreCase(employee.getName())) {
                 show = true;
             }
             if (profession != null) {
@@ -197,8 +198,15 @@ public class EmployeeManager {
                 }
             }
             if (show) {
+                if (!found) {
+                    found = true;
+                    System.out.println(">>> Employee(s) found:");
+                }
                 displayEmployee(employee);
             }
+        }
+        if (!found) {
+            System.out.println(">>> Employee(s) not found!");
         }
     }
 
@@ -206,8 +214,13 @@ public class EmployeeManager {
      * Display all employees
      */
     public void displayAll() {
-        for (Employee employee : employees) {
-            displayEmployee(employee);
+        if (employees.size() > 0) {
+            System.out.println("=== Displaying all " + employees.size() + " employees ===");
+            for (Employee employee : employees) {
+                displayEmployee(employee);
+            }
+        } else {
+            System.out.println("[No employees registered]");
         }
     }
 
