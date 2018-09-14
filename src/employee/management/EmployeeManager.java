@@ -1,4 +1,4 @@
-package laboration2;
+package employee.management;
 
 import employee.Employee;
 import employee.Programmer;
@@ -68,16 +68,19 @@ public class EmployeeManager {
      * Delete one employee
      *
      * @param employeeId Unique ID of employee to delete
+     * @return 'true' if delete successful, else 'false'
      */
-    public void delete(int employeeId) {
+    public boolean delete(int employeeId) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             employees.remove(indexOfEmployee);
+            return true;
         }
+        return false;
     }
 
     /**
-     * Update employee. Fields NOT to set should be passed as 'null'.
+     * Update employee. Fields NOT to update should be passed as 'null'.
      *
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]"
@@ -85,9 +88,9 @@ public class EmployeeManager {
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
-     * Employee.GENDER_UNDEFINED
+     * @return 'true' if update successful, else 'false'
      */
-    public void update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
+    public boolean update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             Employee employee = employees.get(indexOfEmployee);
@@ -122,10 +125,12 @@ public class EmployeeManager {
                     }
                     default:
                         // Faulty profession
-                        break;
+                        return false;
                 }
             }
+            return true; // Success!
         }
+        return false; // Error. Employee not found.
     }
 
     /**
@@ -157,9 +162,9 @@ public class EmployeeManager {
      * Search and display an employee based on given arguments. Fields NOT to
      * search for should be passed as 'null'.
      *
-     * @param employeeId
-     * @param name
-     * @param profession
+     * @param employeeId Mandatory identifier of employee to update.
+     * @param name Name on format "[First name] [Last name]"
+     * @param profession Secretary.ID, Technician.ID or Programmer.ID
      */
     public void search(Integer employeeId, String name, Integer profession) {
         for (Employee employee : employees) {

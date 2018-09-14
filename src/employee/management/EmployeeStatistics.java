@@ -1,5 +1,6 @@
-package laboration2;
+package employee.management;
 
+import employee.management.EmployeeManager;
 import employee.Employee;
 import employee.Programmer;
 import employee.Secretary;
@@ -10,6 +11,11 @@ public class EmployeeStatistics {
 
     private final ArrayList<Employee> employees;
 
+    /**
+     * Constructor
+     *
+     * @param em The EmployeeManager to get the employee list to process
+     */
     public EmployeeStatistics(EmployeeManager em) {
         this.employees = em.getEmployees();
     }
