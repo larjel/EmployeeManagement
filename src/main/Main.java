@@ -1,4 +1,4 @@
-package laboration2;
+package main;
 
 import userio.MenuHandler;
 import employee.management.EmployeeManager;
@@ -6,10 +6,13 @@ import employee.Programmer;
 import employee.Secretary;
 import employee.Technician;
 
-public class Laboration2 {
+/**
+ * Lab 2: Employee Management System
+ */
+public class Main {
 
     /**
-     * Main
+     * Program entry point
      *
      * @param args Caller arguments [Not used]
      */
