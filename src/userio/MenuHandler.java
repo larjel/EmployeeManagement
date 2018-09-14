@@ -31,9 +31,12 @@ public class MenuHandler {
      * @return true if to continue, false if to exit
      */
     public boolean mainMenu() {
+        System.out.println("================ MAIN MENU =================");
         System.out.println("1. Employee management (add, update, delete)");
         System.out.println("2. Employee statistics");
         System.out.println("3. Exit");
+        System.out.println("--------------------------------------------");
+        System.out.print("> ");
 
         int choice = SI.getInt();
         switch (choice) {
@@ -48,7 +51,7 @@ public class MenuHandler {
             case 3: // Exit
                 return false;
             default:
-                System.out.println("Invalid menu choice! Try again.");
+                System.out.println(">>> Invalid menu choice! Try again.");
                 break;
         }
         return true;
@@ -60,17 +63,20 @@ public class MenuHandler {
      * @return true if to continue, false if to exit
      */
     private boolean employeeManagementMenu() {
+        System.out.println("=========== EMPLOYEE MANAGEMENT ============");
         System.out.println("1. Register employee");
         System.out.println("2. Delete employee");
         System.out.println("3. Update name of employee");
         System.out.println("4. Update the birthdate of employee");
         System.out.println("5. Update the department of employee");
-        System.out.println("6. Update Salary of employee");
+        System.out.println("6. Update salary of employee");
         System.out.println("7. Search employee by name");
-        System.out.println("8. Search employee number");
-        System.out.println("9. Search employee by department");
+        System.out.println("8. Search employee ID number");
+        System.out.println("9. Search employee by profession/department");
         System.out.println("10. Display all employees");
         System.out.println("0. Back to main menu");
+        System.out.println("--------------------------------------------");
+        System.out.print("> ");
 
         int choice = SI.getInt();
         switch (choice) {
@@ -85,22 +91,26 @@ public class MenuHandler {
             }
             case 3: // Update name of employee
             case 4: // Update the birthdate of employee
-            case 5: // Update the department of employee
+            case 5: // Update the profession/department of employee
             case 6: // Update Salary of employee
                 updateEmployee(choice);
                 break;
             case 7: // Search employee by name
-            case 8: // Search employee number
-            case 9: // Search employee by department
+            case 8: // Search employee ID number
+            case 9: // Search employee by profession/department
                 searchEmployee(choice);
                 break;
             case 10: // Display all employees
                 EM.displayAll();
                 break;
             default:
-                System.out.println("Invalid menu choice! Try again.");
+                System.out.println(">>> Invalid menu choice! Try again.");
                 break;
         }
+
+        System.out.println("Press Enter to continue...");
+        SI.getString();
+
         return true;
     }
 
@@ -108,9 +118,9 @@ public class MenuHandler {
         System.out.print("ID of employee to delete: ");
         int employeeId = SI.getInt();
         if (EM.delete(employeeId)) {
-            System.out.println("Employee successfully deleted.");
+            System.out.println(">>> Employee successfully deleted.");
         } else {
-            System.out.println("Error! Employee deletion failed.");
+            System.out.println(">>> Error! Employee deletion failed.");
         }
     }
 
@@ -129,8 +139,8 @@ public class MenuHandler {
                 EM.search(null, fname + " " + lname, null);
                 break;
             }
-            case 8: { // Search employee number
-                System.out.print("Employee number/ID: ");
+            case 8: { // Search employee by ID number
+                System.out.print("Employee ID number: ");
                 int employeeId = SI.getInt();
                 EM.search(employeeId, null, null);
                 break;
@@ -180,7 +190,7 @@ public class MenuHandler {
                 break;
             }
             case 6: { // Update Salary of employee
-                System.out.print("Salary: ");
+                System.out.print("New salary: ");
                 int salary = SI.getInt();
                 success = EM.update(employeeId, null, null, null, salary, null);
                 break;
@@ -191,9 +201,9 @@ public class MenuHandler {
         }
 
         if (success) {
-            System.out.println("Employee successfully updated.");
+            System.out.println(">>> Employee successfully updated.");
         } else {
-            System.out.println("Error! Employee update failed.");
+            System.out.println(">>> Error! Employee update failed.");
         }
     }
 
@@ -221,9 +231,9 @@ public class MenuHandler {
             genderString = Employee.GENDER_WOMAN;
         }
         if (EM.add(fname + " " + lname, birthday, profession, salary, genderString)) {
-            System.out.println("Employee successfully registered!");
+            System.out.println(">>> Employee successfully registered!");
         } else {
-            System.out.println("Error! Failure to register employee.");
+            System.out.println(">>> Error! Failure to register employee.");
         }
     }
 
@@ -233,19 +243,22 @@ public class MenuHandler {
      * @return true if to continue, false if to exit
      */
     private boolean employeeStatisticsMenu() {
-        System.out.println("1. Average wage at the company");
+        System.out.println("=========== EMPLOYEE STATISTICS ============");
+        System.out.println("1. Average salary at the company");
         System.out.println("2. Maximum salary in the company");
         System.out.println("3. Minimum salary in the company");
         System.out.println("4. Total bonus");
         System.out.println("5. Women in percentage in the company");
         System.out.println("6. Men percentage of the various work role categories");
         System.out.println("0. Back to Main Menu");
+        System.out.println("--------------------------------------------");
+        System.out.print("> ");
 
         int choice = SI.getInt();
         switch (choice) {
             case 0: // Back to Main Menu
                 return false;
-            case 1: // Average wage at the company
+            case 1: // Average salary at the company
                 ES.displayAverageSalary();
                 break;
             case 2: // Maximum salary in the company
@@ -264,9 +277,13 @@ public class MenuHandler {
                 ES.displayMenPercentageOfWorkRole();
                 break;
             default:
-                System.out.println("Invalid menu choice! Try again.");
+                System.out.println(">>> Invalid menu choice! Try again.");
                 break;
         }
+
+        System.out.println("Press Enter to continue...");
+        SI.getString();
+
         return true;
     }
 
