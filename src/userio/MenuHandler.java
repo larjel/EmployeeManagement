@@ -177,7 +177,7 @@ public class MenuHandler {
                 break;
             }
             case 4: { // Update the birthdate of employee
-                System.out.print("New (corrected) birthday (YYMMDD): ");
+                System.out.print("New (corrected) birthday (YYYYMMDD): ");
                 String birthday = SI.getString().trim();
                 success = EM.update(employeeId, null, birthday, null, null, null);
                 break;
@@ -203,7 +203,7 @@ public class MenuHandler {
         if (success) {
             System.out.println(">>> Employee successfully updated.");
         } else {
-            System.out.println(">>> Error! Employee update failed.");
+            System.out.println(">>> Error! Employee update failed. Bad input?");
         }
     }
 
@@ -215,7 +215,7 @@ public class MenuHandler {
         String fname = SI.getString().trim();
         System.out.print("Last name: ");
         String lname = SI.getString().trim();
-        System.out.print("Birthday (YYMMDD): ");
+        System.out.print("Birthday (YYYYMMDD): ");
         String birthday = SI.getString().trim();
         System.out.print("Salary: ");
         int salary = SI.getInt();
@@ -233,7 +233,7 @@ public class MenuHandler {
         if (EM.add(fname + " " + lname, birthday, profession, salary, genderString)) {
             System.out.println(">>> Employee successfully registered!");
         } else {
-            System.out.println(">>> Error! Failure to register employee.");
+            System.out.println(">>> Error! Failure to register employee. Bad input?");
         }
     }
 
