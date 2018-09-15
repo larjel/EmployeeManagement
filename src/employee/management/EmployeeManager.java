@@ -4,6 +4,9 @@ import employee.Employee;
 import employee.Programmer;
 import employee.Secretary;
 import employee.Technician;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class EmployeeManager {
@@ -14,17 +17,35 @@ public class EmployeeManager {
     private final ArrayList<Employee> employees = new ArrayList<>();
 
     /**
+     * Verify that the user birthday input is a proper date
+     *
+     * @param birthday User input date (should be on format YYYYMMDD)
+     * @return true if date verification successful, else false
+     */
+    private boolean verifyBirthdayInput(String birthday) {
+        try {
+            LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyyMMdd"));
+            return true;
+        } catch (DateTimeParseException e) {
+            return false; // Bad format
+        }
+    }
+
+    /**
      * Add a new Employee
      *
      * @param name Name on format "[First name] [Last name]"
-     * @param birthday Birthday on format YYMMDD
+     * @param birthday Birthday on format YYYYMMDD
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
-     * @return 'true' if employee was successfully added or 'false' if failure
+     * @return true if employee was successfully added or false if failure
      */
     public boolean add(String name, String birthday, int profession, int salary, String gender) {
+        if (!verifyBirthdayInput(birthday)) {
+            return false;
+        }
         Employee employee;
         switch (profession) {
             case Secretary.ID:
@@ -68,7 +89,7 @@ public class EmployeeManager {
      * Delete one employee
      *
      * @param employeeId Unique ID of employee to delete
-     * @return 'true' if delete successful, else 'false'
+     * @return true if delete successful, else false
      */
     public boolean delete(int employeeId) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
@@ -84,11 +105,11 @@ public class EmployeeManager {
      *
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]"
-     * @param birthday Birthday on format YYMMDD
+     * @param birthday Birthday on format YYYYMMDD
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
-     * @return 'true' if update successful, else 'false'
+     * @return true if update successful, else false
      */
     public boolean update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
@@ -98,6 +119,9 @@ public class EmployeeManager {
                 employee.setName(name);
             }
             if (birthday != null) {
+                if (!verifyBirthdayInput(birthday)) {
+                    return false;
+                }
                 employee.setBirthday(birthday);
             }
             if (salary != null) {
