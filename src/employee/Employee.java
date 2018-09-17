@@ -30,10 +30,11 @@ public abstract class Employee {
     /**
      * Constructor
      *
-     * @param name
-     * @param birthday
-     * @param salary
-     * @param gender
+     * @param name Name on format "[First name] [Last name]"
+     * @param birthday Birthday on format YYYYMMDD
+     * @param salary Salary
+     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
+     * Employee.GENDER_UNDEFINED
      */
     protected Employee(String name, String birthday, int salary, String gender) {
         this.employeeId = idGenerator++;
@@ -53,7 +54,7 @@ public abstract class Employee {
     @Override
     public String toString() {
         return System.lineSeparator() + "Employee{" + "name=" + name
-                + ", birthDate=" + birthday + ", salary=" + salary
+                + ", birthday=" + birthday + ", salary=" + salary
                 + ", gender=" + gender + ", employeeId=" + employeeId + '}';
     }
 

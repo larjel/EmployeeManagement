@@ -109,6 +109,7 @@ public class EmployeeManager {
      * @param profession Secretary.ID, Technician.ID or Programmer.ID
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
+     * Employee.GENDER_UNDEFINED
      * @return true if update successful, else false
      */
     public boolean update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
