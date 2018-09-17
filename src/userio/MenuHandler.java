@@ -15,6 +15,8 @@ public class MenuHandler {
     private final EmployeeManager EM;
     // Handles calculation and displaying of employee statistics
     private final EmployeeStatistics ES;
+    // Default message if menu selection number is invalid
+    private static final String INVALID_MENU_CHOICE = ">>> Invalid menu choice! Try again.";
 
     /**
      * Constructor
@@ -51,7 +53,7 @@ public class MenuHandler {
             case 3: // Exit
                 return false;
             default:
-                System.out.println(">>> Invalid menu choice! Try again.");
+                System.out.println(INVALID_MENU_CHOICE);
                 break;
         }
         return true;
@@ -104,7 +106,7 @@ public class MenuHandler {
                 EM.displayAll();
                 break;
             default:
-                System.out.println(">>> Invalid menu choice! Try again.");
+                System.out.println(INVALID_MENU_CHOICE);
                 break;
         }
 
@@ -277,7 +279,7 @@ public class MenuHandler {
                 ES.displayMenPercentageOfWorkRole();
                 break;
             default:
-                System.out.println(">>> Invalid menu choice! Try again.");
+                System.out.println(INVALID_MENU_CHOICE);
                 break;
         }
 
