@@ -19,29 +19,15 @@ public class Main {
      */
     public static void main(String[] args) {
         MenuHandler mh = new MenuHandler();
+        //addTestPersons(mh.getEmployeeManager());
         while (mh.mainMenu()) {
         }
     }
 
-    /**
-     * For testing employee management
-     */
-    private void testMethod() {
-        EmployeeManager em = new EmployeeManager();
-
-        em.add("Anders Andersson", "660101", Secretary.ID, 30000, Employee.GENDER_MAN);
-        em.add("Sven Svensson", "880101", Technician.ID, 45000, Employee.GENDER_MAN);
-        em.add("Lisa Lissabon", "910201", Technician.ID, 41000, Employee.GENDER_WOMAN);
-        em.add("Mary Martin", "431109", Programmer.ID, 47000, Employee.GENDER_WOMAN);
-        em.displayAll();
-        System.out.println();
-
-        em.update(2, null, null, Programmer.ID, null, null);
-        em.displayAll();
-
-        //em.search(null, null, Secretary.ID);
-        //em.delete(1);
-        //em.displayAll();        
+    private static void addTestPersons(EmployeeManager em) {
+        em.add("Anders Andersson", "19660101", Secretary.ID, 30000, Employee.GENDER_MAN);
+        em.add("Sven Svensson", "19880101", Technician.ID, 45000, Employee.GENDER_MAN);
+        em.add("Lisa Lissabon", "19910201", Technician.ID, 41000, Employee.GENDER_WOMAN);
+        em.add("Mary Martin", "19431109", Programmer.ID, 47000, Employee.GENDER_WOMAN);
     }
-
 }
