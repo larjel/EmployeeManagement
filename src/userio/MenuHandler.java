@@ -289,4 +289,13 @@ public class MenuHandler {
         return true;
     }
 
+    /**
+     * Get the Employee Manager used by the instance (may be used for testing)
+     *
+     * @return Employee manager
+     */
+    public EmployeeManager getEmployeeManager() {
+        return EM;
+    }
+
 }
