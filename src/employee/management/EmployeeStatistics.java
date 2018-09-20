@@ -1,10 +1,6 @@
 package employee.management;
 
-import employee.management.EmployeeManager;
-import employee.Employee;
-import employee.Programmer;
-import employee.Secretary;
-import employee.Technician;
+import employee.*;
 import java.util.ArrayList;
 
 public class EmployeeStatistics {
@@ -65,14 +61,14 @@ public class EmployeeStatistics {
 
     public void displayWomenStaffPercentage() {
         int nWomen = 0;
-        double womenPercentage = 0.0;
+        int womenPercentage = 0;
         if (employees.size() > 0) {
             for (Employee employee : employees) {
                 if (employee.getGender().equals(Employee.GENDER_WOMAN)) {
                     nWomen++;
                 }
             }
-            womenPercentage = 100.0 * nWomen / employees.size();
+            womenPercentage = 100 * nWomen / employees.size();
         }
         System.out.println("Women in the staff: " + womenPercentage + "%");
     }
@@ -85,9 +81,9 @@ public class EmployeeStatistics {
         int nTechniciansMen = 0;
         int nProgrammersMen = 0;
 
-        double secretariesMenPercentage = 0.0;
-        double techniciansMenPercentage = 0.0;
-        double programmersMenPercentage = 0.0;
+        int secretariesMenPercentage = 0;
+        int techniciansMenPercentage = 0;
+        int programmersMenPercentage = 0;
 
         for (Employee employee : employees) {
             if (employee instanceof Secretary) {
@@ -109,13 +105,13 @@ public class EmployeeStatistics {
         }
 
         if (nSecretariesMen > 0) {
-            secretariesMenPercentage = 100.0 * nSecretariesMen / nSecretariesTotal;
+            secretariesMenPercentage = 100 * nSecretariesMen / nSecretariesTotal;
         }
         if (nTechniciansMen > 0) {
-            techniciansMenPercentage = 100.0 * nTechniciansMen / nTechniciansTotal;
+            techniciansMenPercentage = 100 * nTechniciansMen / nTechniciansTotal;
         }
         if (nProgrammersMen > 0) {
-            programmersMenPercentage = 100.0 * nProgrammersMen / nProgrammersTotal;
+            programmersMenPercentage = 100 * nProgrammersMen / nProgrammersTotal;
         }
 
         System.out.println("Men percentage of Secretaries: " + secretariesMenPercentage + "%");
