@@ -1,9 +1,6 @@
 package employee.management;
 
-import employee.Employee;
-import employee.Programmer;
-import employee.Secretary;
-import employee.Technician;
+import employee.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -36,27 +33,28 @@ public class EmployeeManager {
      *
      * @param name Name on format "[First name] [Last name]"
      * @param birthday Birthday on format YYYYMMDD
-     * @param profession Secretary.ID, Technician.ID or Programmer.ID
+     * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
      * @return true if employee was successfully added or false if failure
      */
-    public boolean add(String name, String birthday, int profession, int salary, String gender) {
+    public boolean add(String name, String birthday, Profession profession, int salary, String gender) {
         if (!verifyBirthdayInput(birthday)) {
             return false;
         }
         Employee employee;
         switch (profession) {
-            case Secretary.ID:
+            case SECRETARY:
                 employee = new Secretary(name, birthday, salary, gender);
                 break;
-            case Technician.ID:
+            case TECHNICIAN:
                 employee = new Technician(name, birthday, salary, gender);
                 break;
-            case Programmer.ID:
+            case PROGRAMMER:
                 employee = new Programmer(name, birthday, salary, gender);
                 break;
+            case INVALID:
             default:
                 employee = null;
                 break;
@@ -106,13 +104,13 @@ public class EmployeeManager {
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]"
      * @param birthday Birthday on format YYYYMMDD
-     * @param profession Secretary.ID, Technician.ID or Programmer.ID
+     * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
      * @param salary Salary
      * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
      * Employee.GENDER_UNDEFINED
      * @return true if update successful, else false
      */
-    public boolean update(int employeeId, String name, String birthday, Integer profession, Integer salary, String gender) {
+    public boolean update(int employeeId, String name, String birthday, Profession profession, Integer salary, String gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             Employee employee = employees.get(indexOfEmployee);
@@ -133,21 +131,19 @@ public class EmployeeManager {
             }
             if (profession != null) {
                 switch (profession) {
-                    case Secretary.ID: {
+                    case SECRETARY:
                         Secretary secretary = new Secretary(employee);
                         employees.set(indexOfEmployee, secretary);
                         break;
-                    }
-                    case Technician.ID: {
+                    case TECHNICIAN:
                         Technician technician = new Technician(employee);
                         employees.set(indexOfEmployee, technician);
                         break;
-                    }
-                    case Programmer.ID: {
+                    case PROGRAMMER:
                         Programmer programmer = new Programmer(employee);
                         employees.set(indexOfEmployee, programmer);
                         break;
-                    }
+                    case INVALID:
                     default:
                         // Faulty profession
                         return false;
@@ -189,9 +185,9 @@ public class EmployeeManager {
      *
      * @param employeeId Mandatory identifier of employee to update.
      * @param name Name on format "[First name] [Last name]" (case insensitive)
-     * @param profession Secretary.ID, Technician.ID or Programmer.ID
+     * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
      */
-    public void search(Integer employeeId, String name, Integer profession) {
+    public void search(Integer employeeId, String name, Profession profession) {
         boolean found = false;
         for (Employee employee : employees) {
             boolean show = false;
@@ -203,21 +199,22 @@ public class EmployeeManager {
             }
             if (profession != null) {
                 switch (profession) {
-                    case Secretary.ID:
+                    case SECRETARY:
                         if (employee instanceof Secretary) {
                             show = true;
                         }
                         break;
-                    case Technician.ID:
+                    case TECHNICIAN:
                         if (employee instanceof Technician) {
                             show = true;
                         }
                         break;
-                    case Programmer.ID:
+                    case PROGRAMMER:
                         if (employee instanceof Programmer) {
                             show = true;
                         }
                         break;
+                    case INVALID:
                     default:
                         break;
                 }

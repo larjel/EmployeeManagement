@@ -3,9 +3,7 @@ package userio;
 import employee.management.EmployeeStatistics;
 import employee.management.EmployeeManager;
 import employee.Employee;
-import employee.Programmer;
-import employee.Secretary;
-import employee.Technician;
+import employee.Profession;
 
 public class MenuHandler {
 
@@ -65,19 +63,19 @@ public class MenuHandler {
      * @return true if to continue, false if to exit
      */
     private boolean employeeManagementMenu() {
-        System.out.println("=========== EMPLOYEE MANAGEMENT ============");
+        System.out.println("============ EMPLOYEE MANAGEMENT =============");
         System.out.println("1. Register employee");
         System.out.println("2. Delete employee");
         System.out.println("3. Update name of employee");
         System.out.println("4. Update the birthdate of employee");
-        System.out.println("5. Update the department of employee");
+        System.out.println("5. Update the profession/department of employee");
         System.out.println("6. Update salary of employee");
         System.out.println("7. Search employee by name");
         System.out.println("8. Search employee ID number");
         System.out.println("9. Search employee by profession/department");
         System.out.println("10. Display all employees");
         System.out.println("0. Back to main menu");
-        System.out.println("--------------------------------------------");
+        System.out.println("----------------------------------------------");
         System.out.print("> ");
 
         int choice = SI.getInt();
@@ -127,6 +125,31 @@ public class MenuHandler {
     }
 
     /**
+     * Get user input for profession and map to enumeration.
+     *
+     * @return Profession enumeration or null if bad input
+     */
+    private Profession getProfession() {
+        System.out.print("Profession/department (1=Secretary, 2=Technician, 3=Programmer): ");
+        Profession profession;
+        switch (SI.getInt()) {
+            case 1:
+                profession = Profession.SECRETARY;
+                break;
+            case 2:
+                profession = Profession.TECHNICIAN;
+                break;
+            case 3:
+                profession = Profession.PROGRAMMER;
+                break;
+            default:
+                profession = Profession.INVALID;
+                break;
+        }
+        return profession;
+    }
+
+    /**
      * Search for an employee
      *
      * @param searchAction What field to use for search
@@ -148,9 +171,7 @@ public class MenuHandler {
                 break;
             }
             case 9: { // Search employee by department
-                System.out.print("Profession/department (");
-                System.out.print(Secretary.ID + "=Secretary, " + Technician.ID + "=Technician, " + Programmer.ID + "=Programmer): ");
-                int profession = SI.getInt();
+                Profession profession = getProfession();
                 EM.search(null, null, profession);
                 break;
             }
@@ -184,10 +205,8 @@ public class MenuHandler {
                 success = EM.update(employeeId, null, birthday, null, null, null);
                 break;
             }
-            case 5: { // Update the department of employee
-                System.out.print("New profession/department (");
-                System.out.print(Secretary.ID + "=Secretary, " + Technician.ID + "=Technician, " + Programmer.ID + "=Programmer): ");
-                int profession = SI.getInt();
+            case 5: { // Update the profession/department of employee
+                Profession profession = getProfession();
                 success = EM.update(employeeId, null, null, profession, null, null);
                 break;
             }
@@ -221,9 +240,7 @@ public class MenuHandler {
         String birthday = SI.getString().trim();
         System.out.print("Salary: ");
         int salary = SI.getInt();
-        System.out.print("Profession/department (");
-        System.out.print(Secretary.ID + "=Secretary, " + Technician.ID + "=Technician, " + Programmer.ID + "=Programmer): ");
-        int profession = SI.getInt();
+        Profession profession = getProfession();
         System.out.print("Gender (1=Man, 2=Woman, 3=Undefined): ");
         int gender = SI.getInt();
         String genderString = Employee.GENDER_UNDEFINED;
