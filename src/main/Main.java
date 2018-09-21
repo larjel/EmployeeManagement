@@ -1,8 +1,8 @@
 package main;
 
-import userio.MenuHandler;
 import employee.management.EmployeeManager;
 import employee.*;
+import userio.menu.MainMenu;
 
 /**
  * Lab 2: Employee Management System
@@ -15,9 +15,9 @@ public class Main {
      * @param args The command line arguments [Not used]
      */
     public static void main(String[] args) {
-        MenuHandler mh = new MenuHandler();
-        //addTestPersons(mh.getEmployeeManager());
-        while (mh.mainMenu()) {
+        MainMenu mainMenu = new MainMenu();
+        //addTestPersons(mainMenu.getEmployeeManager());
+        while (mainMenu.showMainMenu()) {
         }
     }
 
