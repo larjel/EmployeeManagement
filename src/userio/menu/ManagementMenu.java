@@ -5,7 +5,7 @@ import employee.Profession;
 import employee.management.EmployeeManager;
 import userio.SystemInput;
 
-public class ManagementMenu {
+class ManagementMenu {
 
     // Wrapper class for Scanner. Handles exceptions & buffer flushing.
     private final SystemInput systemInput;
