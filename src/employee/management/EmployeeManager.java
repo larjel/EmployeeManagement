@@ -236,13 +236,13 @@ public class EmployeeManager {
      * Display all employees
      */
     public void displayAll() {
-        if (employees.size() > 0) {
+        if (employees.isEmpty()) {
+            System.out.println("[No employees registered]");
+        } else {
             System.out.println("=== Displaying all " + employees.size() + " employees ===");
             for (Employee employee : employees) {
                 displayEmployee(employee);
             }
-        } else {
-            System.out.println("[No employees registered]");
         }
     }
 

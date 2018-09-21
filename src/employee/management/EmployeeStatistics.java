@@ -18,7 +18,7 @@ public class EmployeeStatistics {
 
     public void displayAverageSalary() {
         int average = 0;
-        if (employees.size() > 0) {
+        if (!employees.isEmpty()) {
             int total = 0;
             for (Employee employee : employees) {
                 total += employee.getSalary();
@@ -40,7 +40,7 @@ public class EmployeeStatistics {
 
     public void displayMinSalary() {
         int min = 0;
-        if (employees.size() > 0) {
+        if (!employees.isEmpty()) {
             min = Integer.MAX_VALUE;
             for (Employee employee : employees) {
                 if (employee.getSalary() < min) {
@@ -62,7 +62,7 @@ public class EmployeeStatistics {
     public void displayWomenStaffPercentage() {
         int nWomen = 0;
         int womenPercentage = 0;
-        if (employees.size() > 0) {
+        if (!employees.isEmpty()) {
             for (Employee employee : employees) {
                 if (employee.getGender().equals(Employee.GENDER_WOMAN)) {
                     nWomen++;
