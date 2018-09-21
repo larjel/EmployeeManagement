@@ -44,7 +44,7 @@ public class ManagementMenu {
         System.out.println("----------------------------------------------");
         System.out.print("> ");
 
-        int choice = systemInput.getInt();
+        final int choice = systemInput.getInt();
         switch (choice) {
             case 0: // Exit
                 return false;

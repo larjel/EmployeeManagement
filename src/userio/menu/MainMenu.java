@@ -40,7 +40,7 @@ public class MainMenu {
         System.out.println("--------------------------------------------");
         System.out.print("> ");
 
-        int choice = systemInput.getInt();
+        final int choice = systemInput.getInt();
         switch (choice) {
             case 1: // Employee management
                 while (managementMenu.showManagementMenu()) {

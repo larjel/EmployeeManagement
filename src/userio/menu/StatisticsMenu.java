@@ -39,7 +39,7 @@ public class StatisticsMenu {
         System.out.println("--------------------------------------------");
         System.out.print("> ");
 
-        int choice = systemInput.getInt();
+        final int choice = systemInput.getInt();
         switch (choice) {
             case 0: // Back to Main Menu
                 return false;
