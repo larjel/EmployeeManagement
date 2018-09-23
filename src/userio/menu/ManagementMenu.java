@@ -12,6 +12,19 @@ class ManagementMenu {
     // Handles Employee list and operations on the list
     private final EmployeeManager employeeManager;
 
+    // Menu option constants for actions on employee(s)
+    private static final int OPT_REGISTER = 1;
+    private static final int OPT_DELETE = 2;
+    private static final int OPT_UPDATE_NAME = 3;
+    private static final int OPT_UPDATE_BIRTHDAY = 4;
+    private static final int OPT_UPDATE_PROFESSION = 5;
+    private static final int OPT_UPDATE_SALARY = 6;
+    private static final int OPT_SEARCH_BY_NAME = 7;
+    private static final int OPT_SEARCH_BY_ID_NUMBER = 8;
+    private static final int OPT_SEARCH_BY_PROFESSION = 9;
+    private static final int OPT_DISPLAY_ALL = 10;
+    private static final int OPT_EXIT = 0;
+
     /**
      * Constructor
      *
@@ -30,43 +43,43 @@ class ManagementMenu {
      */
     protected boolean showManagementMenu() {
         System.out.println("============ EMPLOYEE MANAGEMENT =============");
-        System.out.println("1. Register employee");
-        System.out.println("2. Delete employee");
-        System.out.println("3. Update name of employee");
-        System.out.println("4. Update the birthdate of employee");
-        System.out.println("5. Update the profession/department of employee");
-        System.out.println("6. Update salary of employee");
-        System.out.println("7. Search employee by name");
-        System.out.println("8. Search employee ID number");
-        System.out.println("9. Search employee by profession/department");
-        System.out.println("10. Display all employees");
-        System.out.println("0. Back to main menu");
+        System.out.println(OPT_REGISTER + ". Register employee");
+        System.out.println(OPT_DELETE + ". Delete employee");
+        System.out.println(OPT_UPDATE_NAME + ". Update name of employee");
+        System.out.println(OPT_UPDATE_BIRTHDAY + ". Update the birthdate of employee");
+        System.out.println(OPT_UPDATE_PROFESSION + ". Update the profession/department of employee");
+        System.out.println(OPT_UPDATE_SALARY + ". Update salary of employee");
+        System.out.println(OPT_SEARCH_BY_NAME + ". Search employee by name");
+        System.out.println(OPT_SEARCH_BY_ID_NUMBER + ". Search employee ID number");
+        System.out.println(OPT_SEARCH_BY_PROFESSION + ". Search employee by profession/department");
+        System.out.println(OPT_DISPLAY_ALL + ". Display all employees");
+        System.out.println(OPT_EXIT + ". Back to main menu");
         System.out.println("----------------------------------------------");
         System.out.print("> ");
 
-        final int choice = systemInput.getInt();
-        switch (choice) {
-            case 0: // Exit
+        final int option = systemInput.getInt();
+        switch (option) {
+            case OPT_EXIT:
                 return false;
-            case 1: // Register employee
+            case OPT_REGISTER:
                 registerEmployee();
                 break;
-            case 2: { // Delete employee
+            case OPT_DELETE: {
                 deleteEmployee();
                 break;
             }
-            case 3: // Update name of employee
-            case 4: // Update the birthdate of employee
-            case 5: // Update the profession/department of employee
-            case 6: // Update Salary of employee
-                updateEmployee(choice);
+            case OPT_UPDATE_NAME:
+            case OPT_UPDATE_BIRTHDAY:
+            case OPT_UPDATE_PROFESSION:
+            case OPT_UPDATE_SALARY:
+                updateEmployee(option);
                 break;
-            case 7: // Search employee by name
-            case 8: // Search employee ID number
-            case 9: // Search employee by profession/department
-                searchEmployee(choice);
+            case OPT_SEARCH_BY_NAME:
+            case OPT_SEARCH_BY_ID_NUMBER:
+            case OPT_SEARCH_BY_PROFESSION:
+                searchEmployee(option);
                 break;
-            case 10: // Display all employees
+            case OPT_DISPLAY_ALL:
                 employeeManager.displayAll();
                 break;
             default:
@@ -118,11 +131,11 @@ class ManagementMenu {
     /**
      * Search for an employee
      *
-     * @param searchAction What field to use for search
+     * @param option What field to use for search
      */
-    private void searchEmployee(int searchAction) {
-        switch (searchAction) {
-            case 7: { // Search employee by name
+    private void searchEmployee(int option) {
+        switch (option) {
+            case OPT_SEARCH_BY_NAME: {
                 System.out.print("First name: ");
                 String fname = systemInput.getString().trim();
                 System.out.print("Last name: ");
@@ -130,13 +143,13 @@ class ManagementMenu {
                 employeeManager.search(null, fname + " " + lname, null);
                 break;
             }
-            case 8: { // Search employee by ID number
+            case OPT_SEARCH_BY_ID_NUMBER: {
                 System.out.print("Employee ID number: ");
                 int employeeId = systemInput.getInt();
                 employeeManager.search(employeeId, null, null);
                 break;
             }
-            case 9: { // Search employee by department
+            case OPT_SEARCH_BY_PROFESSION: {
                 Profession profession = getProfession();
                 employeeManager.search(null, null, profession);
                 break;
@@ -149,15 +162,15 @@ class ManagementMenu {
     /**
      * Update employee information
      *
-     * @param updateAction What field to update
+     * @param option What field to update
      */
-    private void updateEmployee(int updateAction) {
+    private void updateEmployee(int option) {
         System.out.print("ID of employee to update: ");
         int employeeId = systemInput.getInt();
 
         boolean success;
-        switch (updateAction) {
-            case 3: { // Update name of employee
+        switch (option) {
+            case OPT_UPDATE_NAME: {
                 System.out.print("New first name: ");
                 String fname = systemInput.getString().trim();
                 System.out.print("New last name: ");
@@ -165,18 +178,18 @@ class ManagementMenu {
                 success = employeeManager.update(employeeId, fname + " " + lname, null, null, null, null);
                 break;
             }
-            case 4: { // Update the birthdate of employee
+            case OPT_UPDATE_BIRTHDAY: {
                 System.out.print("New (corrected) birthday (YYYYMMDD): ");
                 String birthday = systemInput.getString().trim();
                 success = employeeManager.update(employeeId, null, birthday, null, null, null);
                 break;
             }
-            case 5: { // Update the profession/department of employee
+            case OPT_UPDATE_PROFESSION: {
                 Profession profession = getProfession();
                 success = employeeManager.update(employeeId, null, null, profession, null, null);
                 break;
             }
-            case 6: { // Update Salary of employee
+            case OPT_UPDATE_SALARY: {
                 System.out.print("New salary: ");
                 int salary = systemInput.getInt();
                 success = employeeManager.update(employeeId, null, null, null, salary, null);

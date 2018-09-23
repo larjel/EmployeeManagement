@@ -11,6 +11,15 @@ class StatisticsMenu {
     // Handles calculation and displaying of employee statistics
     private final EmployeeStatistics employeeStatistics;
 
+    // Menu option constants for employee statistics
+    private static final int OPT_AVERAGE_SALARY = 1;
+    private static final int OPT_MAX_SALARY = 2;
+    private static final int OPT_MIN_SALARY = 3;
+    private static final int OPT_TOTAL_BONUS = 4;
+    private static final int OPT_WOMEN_PERCENTAGE = 5;
+    private static final int OPT_MEN_PERCENTAGE_OF_WORK_ROLE = 6;
+    private static final int OPT_EXIT = 0;
+
     /**
      * Constructor
      *
@@ -29,36 +38,36 @@ class StatisticsMenu {
      */
     protected boolean showStatisticsMenu() {
         System.out.println("=========== EMPLOYEE STATISTICS ============");
-        System.out.println("1. Average salary at the company");
-        System.out.println("2. Maximum salary in the company");
-        System.out.println("3. Minimum salary in the company");
-        System.out.println("4. Total bonus");
-        System.out.println("5. Women in percentage in the company");
-        System.out.println("6. Men percentage of the various work role categories");
-        System.out.println("0. Back to Main Menu");
+        System.out.println(OPT_AVERAGE_SALARY + ". Average salary at the company");
+        System.out.println(OPT_MAX_SALARY + ". Maximum salary in the company");
+        System.out.println(OPT_MIN_SALARY + ". Minimum salary in the company");
+        System.out.println(OPT_TOTAL_BONUS + ". Total bonus");
+        System.out.println(OPT_WOMEN_PERCENTAGE + ". Women in percentage in the company");
+        System.out.println(OPT_MEN_PERCENTAGE_OF_WORK_ROLE + ". Men percentage of the various work role categories");
+        System.out.println(OPT_EXIT + ". Back to Main Menu");
         System.out.println("--------------------------------------------");
         System.out.print("> ");
 
-        final int choice = systemInput.getInt();
-        switch (choice) {
-            case 0: // Back to Main Menu
+        final int option = systemInput.getInt();
+        switch (option) {
+            case OPT_EXIT:
                 return false;
-            case 1: // Average salary at the company
+            case OPT_AVERAGE_SALARY:
                 employeeStatistics.displayAverageSalary();
                 break;
-            case 2: // Maximum salary in the company
+            case OPT_MAX_SALARY:
                 employeeStatistics.displayMaxSalary();
                 break;
-            case 3: // Minimum salary in the company
+            case OPT_MIN_SALARY:
                 employeeStatistics.displayMinSalary();
                 break;
-            case 4: // Total bonus
+            case OPT_TOTAL_BONUS:
                 employeeStatistics.displayTotalBonus();
                 break;
-            case 5: // Women in percentage in the company
+            case OPT_WOMEN_PERCENTAGE:
                 employeeStatistics.displayWomenStaffPercentage();
                 break;
-            case 6: // Men percentage of the various work role categories
+            case OPT_MEN_PERCENTAGE_OF_WORK_ROLE:
                 employeeStatistics.displayMenPercentageOfWorkRole();
                 break;
             default:

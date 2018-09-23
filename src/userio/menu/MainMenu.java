@@ -17,6 +17,11 @@ public class MainMenu {
     // Default message if menu selection number is invalid
     public static final String INVALID_MENU_CHOICE = ">>> Invalid menu choice! Try again.";
 
+    // Menu option constants
+    private static final int OPT_EMPLOYEE_MANAGEMENT = 1;
+    private static final int OPT_EMPLOYEE_STATISTICS = 2;
+    private static final int OPT_EXIT = 3;
+
     /**
      * Constructor
      */
@@ -34,23 +39,23 @@ public class MainMenu {
      */
     public boolean showMainMenu() {
         System.out.println("================ MAIN MENU =================");
-        System.out.println("1. Employee management (add, update, delete)");
-        System.out.println("2. Employee statistics");
-        System.out.println("3. Exit");
+        System.out.println(OPT_EMPLOYEE_MANAGEMENT + ". Employee management (add, update, delete)");
+        System.out.println(OPT_EMPLOYEE_STATISTICS + ". Employee statistics");
+        System.out.println(OPT_EXIT + ". Exit");
         System.out.println("--------------------------------------------");
         System.out.print("> ");
 
         final int choice = systemInput.getInt();
         switch (choice) {
-            case 1: // Employee management
+            case OPT_EMPLOYEE_MANAGEMENT:
                 while (managementMenu.showManagementMenu()) {
                 }
                 break;
-            case 2: // Employee statistics
+            case OPT_EMPLOYEE_STATISTICS:
                 while (statisticsMenu.showStatisticsMenu()) {
                 }
                 break;
-            case 3: // Exit
+            case OPT_EXIT:
                 return false;
             default:
                 System.out.println(INVALID_MENU_CHOICE);
