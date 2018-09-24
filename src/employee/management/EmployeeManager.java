@@ -183,9 +183,11 @@ public class EmployeeManager {
      * Search and display an employee based on given arguments. Fields NOT to
      * search for should be passed as 'null'.
      *
-     * @param employeeId Mandatory identifier of employee to update.
+     * @param employeeId Identifier of employee to search for
      * @param name Name on format "[First name] [Last name]" (case insensitive)
-     * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
+     * to search for
+     * @param profession Profession SECRETARY, TECHNICIAN or PROGRAMMER to
+     * search for
      */
     public void search(Integer employeeId, String name, Profession profession) {
         boolean found = false;
