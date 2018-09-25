@@ -15,7 +15,7 @@ public class MainMenu {
     private final StatisticsMenu statisticsMenu;
 
     // Default message if menu selection number is invalid
-    public static final String INVALID_MENU_CHOICE = ">>> Invalid menu choice! Try again.";
+    protected static final String INVALID_MENU_CHOICE = ">>> Invalid menu choice! Try again.";
 
     // Menu option constants
     private static final int OPT_EMPLOYEE_MANAGEMENT = 1;
