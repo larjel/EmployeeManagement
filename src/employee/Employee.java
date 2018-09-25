@@ -1,9 +1,11 @@
 package employee;
 
+import java.time.LocalDate;
+
 public abstract class Employee {
 
     private String name;
-    private String birthday;
+    private LocalDate birthday;
     private int salary;
     private Gender gender;
     private final int employeeId;
@@ -27,11 +29,11 @@ public abstract class Employee {
      * Constructor
      *
      * @param name Name on format "[First name] [Last name]"
-     * @param birthday Birthday on format YYYYMMDD
+     * @param birthday Birthday
      * @param salary Salary
      * @param gender Gender.MAN, Gender.WOMAN or Gender.UNDEFINED
      */
-    protected Employee(String name, String birthday, int salary, Gender gender) {
+    protected Employee(String name, LocalDate birthday, int salary, Gender gender) {
         this.employeeId = idGenerator++;
         this.name = name;
         this.birthday = birthday;
@@ -61,11 +63,11 @@ public abstract class Employee {
         this.name = name;
     }
 
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

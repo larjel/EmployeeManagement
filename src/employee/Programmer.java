@@ -1,5 +1,7 @@
 package employee;
 
+import java.time.LocalDate;
+
 public class Programmer extends Employee {
 
     // Multiplier for calculating the bonus
@@ -9,7 +11,7 @@ public class Programmer extends Employee {
         super(e);
     }
 
-    public Programmer(String name, String birthday, int salary, Gender gender) {
+    public Programmer(String name, LocalDate birthday, int salary, Gender gender) {
         super(name, birthday, salary, gender);
     }
 

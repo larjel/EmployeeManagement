@@ -12,19 +12,23 @@ public class EmployeeManager {
      * Holds all Employees
      */
     private final ArrayList<Employee> employees = new ArrayList<>();
+    /**
+     * Used date format: YYYYMMDD
+     */
+    private final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     /**
-     * Verify that the user birthday input is a proper date
+     * Verify that the user birthday input is a proper date. If so, return it as
+     * a LocalDate instance.
      *
      * @param birthday User input date (should be on format YYYYMMDD)
-     * @return true if date verification successful, else false
+     * @return LocalDate instance if successful, else null
      */
-    private boolean verifyBirthdayInput(String birthday) {
+    private LocalDate verifyBirthdayInput(String birthday) {
         try {
-            LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyyMMdd"));
-            return true;
+            return LocalDate.parse(birthday, DATE_FORMAT);
         } catch (DateTimeParseException e) {
-            return false; // Bad format
+            return null; // Bad format
         }
     }
 
@@ -39,19 +43,20 @@ public class EmployeeManager {
      * @return true if employee was successfully added or false if failure
      */
     public boolean add(String name, String birthday, Profession profession, int salary, Gender gender) {
-        if (!verifyBirthdayInput(birthday)) {
+        LocalDate localDateBirthday = verifyBirthdayInput(birthday);
+        if (localDateBirthday == null) {
             return false;
         }
         Employee employee;
         switch (profession) {
             case SECRETARY:
-                employee = new Secretary(name, birthday, salary, gender);
+                employee = new Secretary(name, localDateBirthday, salary, gender);
                 break;
             case TECHNICIAN:
-                employee = new Technician(name, birthday, salary, gender);
+                employee = new Technician(name, localDateBirthday, salary, gender);
                 break;
             case PROGRAMMER:
-                employee = new Programmer(name, birthday, salary, gender);
+                employee = new Programmer(name, localDateBirthday, salary, gender);
                 break;
             case INVALID:
             default:
@@ -116,10 +121,11 @@ public class EmployeeManager {
                 employee.setName(name);
             }
             if (birthday != null) {
-                if (!verifyBirthdayInput(birthday)) {
+                LocalDate localDateBirthday = verifyBirthdayInput(birthday);
+                if (localDateBirthday == null) {
                     return false;
                 }
-                employee.setBirthday(birthday);
+                employee.setBirthday(localDateBirthday);
             }
             if (salary != null) {
                 employee.setSalary(salary);
@@ -161,7 +167,7 @@ public class EmployeeManager {
         System.out.print("ID=" + employee.getEmployeeId());
         System.out.print(", Name=" + employee.getName());
         System.out.print(", Gender=" + employee.getGender());
-        System.out.print(", Birthday=" + employee.getBirthday());
+        System.out.print(", Birthday=" + employee.getBirthday().format(DATE_FORMAT));
         System.out.print(", Salary=" + employee.getSalary());
         System.out.print(", Bonus=" + employee.calculateBonus());
 
