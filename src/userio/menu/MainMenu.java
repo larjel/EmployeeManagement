@@ -45,8 +45,8 @@ public class MainMenu {
         System.out.println("--------------------------------------------");
         System.out.print("> ");
 
-        final int choice = systemInput.getInt();
-        switch (choice) {
+        final int option = systemInput.getInt();
+        switch (option) {
             case OPT_EMPLOYEE_MANAGEMENT:
                 while (managementMenu.showManagementMenu()) {
                 }
