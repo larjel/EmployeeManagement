@@ -9,7 +9,7 @@ public class Technician extends Employee {
         super(e);
     }
 
-    public Technician(String name, String birthday, int salary, String gender) {
+    public Technician(String name, String birthday, int salary, Gender gender) {
         super(name, birthday, salary, gender);
     }
 

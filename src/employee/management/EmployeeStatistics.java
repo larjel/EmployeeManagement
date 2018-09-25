@@ -64,7 +64,7 @@ public class EmployeeStatistics {
         int womenPercentage = 0;
         if (!employees.isEmpty()) {
             for (Employee employee : employees) {
-                if (employee.getGender().equals(Employee.GENDER_WOMAN)) {
+                if (employee.getGender().equals(Gender.WOMAN)) {
                     nWomen++;
                 }
             }
@@ -88,17 +88,17 @@ public class EmployeeStatistics {
         for (Employee employee : employees) {
             if (employee instanceof Secretary) {
                 nSecretariesTotal++;
-                if (employee.getGender().equals(Employee.GENDER_MAN)) {
+                if (employee.getGender().equals(Gender.MAN)) {
                     nSecretariesMen++;
                 }
             } else if (employee instanceof Technician) {
                 nTechniciansTotal++;
-                if (employee.getGender().equals(Employee.GENDER_MAN)) {
+                if (employee.getGender().equals(Gender.MAN)) {
                     nTechniciansMen++;
                 }
             } else if (employee instanceof Programmer) {
                 nProgrammersTotal++;
-                if (employee.getGender().equals(Employee.GENDER_MAN)) {
+                if (employee.getGender().equals(Gender.MAN)) {
                     nProgrammersMen++;
                 }
             }

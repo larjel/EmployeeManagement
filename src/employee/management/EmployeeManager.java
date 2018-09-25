@@ -35,11 +35,10 @@ public class EmployeeManager {
      * @param birthday Birthday on format YYYYMMDD
      * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
      * @param salary Salary
-     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
-     * Employee.GENDER_UNDEFINED
+     * @param gender Gender.MAN, Gender.WOMAN or Gender.UNDEFINED
      * @return true if employee was successfully added or false if failure
      */
-    public boolean add(String name, String birthday, Profession profession, int salary, String gender) {
+    public boolean add(String name, String birthday, Profession profession, int salary, Gender gender) {
         if (!verifyBirthdayInput(birthday)) {
             return false;
         }
@@ -106,11 +105,10 @@ public class EmployeeManager {
      * @param birthday Birthday on format YYYYMMDD
      * @param profession SECRETARY, TECHNICIAN or PROGRAMMER
      * @param salary Salary
-     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
-     * Employee.GENDER_UNDEFINED
+     * @param gender Gender.MAN, Gender.WOMAN or Gender.UNDEFINED
      * @return true if update successful, else false
      */
-    public boolean update(int employeeId, String name, String birthday, Profession profession, Integer salary, String gender) {
+    public boolean update(int employeeId, String name, String birthday, Profession profession, Integer salary, Gender gender) {
         int indexOfEmployee = getIndexOfEmployee(employeeId);
         if (indexOfEmployee != -1) {
             Employee employee = employees.get(indexOfEmployee);

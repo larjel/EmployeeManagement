@@ -9,7 +9,7 @@ public class Secretary extends Employee {
         super(e);
     }
 
-    public Secretary(String name, String birthday, int salary, String gender) {
+    public Secretary(String name, String birthday, int salary, Gender gender) {
         super(name, birthday, salary, gender);
     }
 

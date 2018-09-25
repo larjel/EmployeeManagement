@@ -1,6 +1,7 @@
 package userio.menu;
 
 import employee.Employee;
+import employee.Gender;
 import employee.Profession;
 import employee.management.EmployeeManager;
 import userio.SystemInput;
@@ -222,13 +223,13 @@ class ManagementMenu {
         Profession profession = getProfession();
         System.out.print("Gender (1=Man, 2=Woman, 3=Undefined): ");
         int gender = systemInput.getInt();
-        String genderString = Employee.GENDER_UNDEFINED;
+        Gender genderType = Gender.UNDEFINED;
         if (gender == 1) {
-            genderString = Employee.GENDER_MAN;
+            genderType = Gender.MAN;
         } else if (gender == 2) {
-            genderString = Employee.GENDER_WOMAN;
+            genderType = Gender.WOMAN;
         }
-        if (employeeManager.add(fname + " " + lname, birthday, profession, salary, genderString)) {
+        if (employeeManager.add(fname + " " + lname, birthday, profession, salary, genderType)) {
             System.out.println(">>> Employee successfully registered!");
         } else {
             System.out.println(">>> Error! Failure to register employee. Bad input?");

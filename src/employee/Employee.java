@@ -2,14 +2,10 @@ package employee;
 
 public abstract class Employee {
 
-    public static final String GENDER_MAN = "Man";
-    public static final String GENDER_WOMAN = "Woman";
-    public static final String GENDER_UNDEFINED = "Undefined";
-
     private String name;
     private String birthday;
     private int salary;
-    private String gender;
+    private Gender gender;
     private final int employeeId;
 
     static int idGenerator = 1;
@@ -33,10 +29,9 @@ public abstract class Employee {
      * @param name Name on format "[First name] [Last name]"
      * @param birthday Birthday on format YYYYMMDD
      * @param salary Salary
-     * @param gender Employee.GENDER_MAN, Employee.GENDER_WOMAN or
-     * Employee.GENDER_UNDEFINED
+     * @param gender Gender.MAN, Gender.WOMAN or Gender.UNDEFINED
      */
-    protected Employee(String name, String birthday, int salary, String gender) {
+    protected Employee(String name, String birthday, int salary, Gender gender) {
         this.employeeId = idGenerator++;
         this.name = name;
         this.birthday = birthday;
@@ -82,11 +77,11 @@ public abstract class Employee {
         this.salary = salary;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
