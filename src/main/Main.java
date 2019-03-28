@@ -6,6 +6,8 @@ import userio.menu.MainMenu;
 
 /**
  * Lab 2: Employee Management System
+ *
+ * @author Lars Jelleryd
  */
 public class Main {
 
