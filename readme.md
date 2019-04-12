@@ -1,5 +1,5 @@
 # Employee management system
-This is a simple staff management program written in Java. Data is entered and read via the command prompt (using Scanner for input). All data is hold in volatile memory.
+This is a simple employee management program written in Java. Data is entered and read via the command prompt (using Scanner for input). All data is held in volatile memory.
 
 Some of the things you can do:
 
